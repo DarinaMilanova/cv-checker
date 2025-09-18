@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="result-header card border-0 shadow-sm mb-4">
+  <div class="card-body d-flex flex-column flex-md-row gap-3 align-items-start align-items-md-center justify-content-between">
+    <div>
+      <h1 class="h4 fw-semibold mb-1 d-flex align-items-center gap-3">
+        Analysis Results
+      </h1>
+      <div class="k-meta">
+        {% if analysis.job_title or analysis.company %}
+          {% if analysis.job_title %}<span class="fw-semibold">{{ analysis.job_title }}</span>{% endif %}
+          {% if analysis.company %}<span class="text-muted"> @ {{ analysis.company }}</span>{% endif %}
+        {% else %}
+          <span class="text-muted">No job metadata provided</span>
+        {% endif %}
+        • <span class="text-muted">{{ analysis.created_at|date:"Y-m-d H:i" }}</span>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center gap-2">
+      <div class="score-pill fs-5">{{ match_percent|default:"-" }}%</div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-4">
+  <section class="col-12 col-lg-8">
+    <ul class="nav tab-nav mb-3" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="results-tab" data-bs-toggle="tab" data-bs-target="#resultsPane" type="button" role="tab">Results</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="bycat-tab" data-bs-toggle="tab" data-bs-target="#byCategoryPane" type="button" role="tab">Results by Category</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="cv-tab" data-bs-toggle="tab" data-bs-target="#cvPane" type="button" role="tab">CV Preview</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="jd-tab" data-bs-toggle="tab" data-bs-target="#jdPane" type="button" role="tab">Job Ad Preview</button>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+
+      <div class="tab-pane fade show active" id="resultsPane" role="tabpanel" aria-labelledby="results-tab">
+
+        <div class="row g-3 mb-1">
+          <div class="col-12 col-md-4">
+            <div class="k-card p-3 h-100">
+              <div class="fw-semibold mb-1">Matched skills</div>
+              <div class="k-meta">{{ matched_keywords|length }}</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="k-card p-3 h-100">
+              <div class="fw-semibold mb-1">Missing skills</div>
+              <div class="k-meta">{{ missing_keywords|length }}</div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="k-card p-3 h-100">
+              <div class="fw-semibold mb-1">Extra skills</div>
+              <div class="k-meta">{{ extra_keywords|length }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+          <div class="col-12 col-md-4">
+            <div class="k-card p-3 h-100">
+              <div class="fw-semibold text-success mb-2">Matched</div>
+              {% if matched_keywords %}
+                <div class="k-meta">{{ matched_keywords|join:", " }}</div>
+              {% else %}
+                <div class="k-meta text-muted">No overlaps detected.</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="k-card p-3 h-100">
+              <div class="fw-semibold text-danger mb-2">Missing</div>
+              {% if missing_keywords %}
+                <div class="k-meta">{{ missing_keywords|join:", " }}</div>
+              {% else %}
+                <div class="k-meta text-muted">No gaps detected.</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="k-card p-3 h-100">
+              <div class="fw-semibold text-primary mb-2">Extra</div>
+              {% if extra_keywords %}
+                <div class="k-meta">{{ extra_keywords|join:", " }}</div>
+              {% else %}
+                <div class="k-meta text-muted">No additional strengths listed.</div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="byCategoryPane" role="tabpanel" aria-labelledby="bycat-tab">
+        <div class="table-responsive">
+          <table class="table table-xs align-middle">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th class="text-success">Matched</th>
+                <th class="text-danger">Missing</th>
+                <th class="text-primary">Extra</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in table_rows %}
+                <tr>
+                  <td class="fw-semibold">
+                    {{ row.cat_pretty }}
+                    <span class="k-meta">({{ row.score }}%)</span>
+                  </td>
+                  <td>{{ row.matched }}</td>
+                  <td>{{ row.missing }}</td>
+                  <td>{{ row.extra }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="cvPane" role="tabpanel" aria-labelledby="cv-tab">
+        <div class="d-flex justify-content-between mb-2">
+          <div class="mono k-meta truncate-1">{% if analysis.cv_file %}{{ analysis.cv_file.name|slice:"11:" }}{% else %}CV (pasted text){% endif %}</div>
+          {% if analysis.cv_file %}<a href="{{ analysis.cv_file.url }}" class="btn btn-outline-secondary btn-sm" download>Download</a>{% endif %}
+        </div>
+        <div class="preview-box">{{ analysis.cv_text|linebreaksbr }}</div>
+      </div>
+
+      <div class="tab-pane fade" id="jdPane" role="tabpanel" aria-labelledby="jd-tab">
+        <div class="d-flex justify-content-between mb-2">
+          <div class="mono k-meta truncate-1">{% if analysis.jd_file %}{{ analysis.jd_file.name|slice:"11:" }}{% else %}Job Ad (pasted text){% endif %}</div>
+          {% if analysis.jd_file %}<a href="{{ analysis.jd_file.url }}" class="btn btn-outline-secondary btn-sm" download>Download</a>{% endif %}
+        </div>
+        <div class="preview-box">{{ analysis.jd_text|linebreaksbr }}</div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="col-12 col-lg-4">
+    <div class="insights-col">
+
+      <div class="k-card p-3 mb-3">
+        <div class="fw-semibold mb-1">Result</div>
+        <div class="k-meta">{{ ai_result_text }}</div>
+      </div>
+
+      <div class="k-card p-3 mb-3">
+        <div class="fw-semibold mb-2">Recommendations</div>
+        {% if recommendations %}
+          <ul class="mb-0 ps-3">
+            {% for rec in recommendations %}
+              <li>{{ rec }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <div class="k-meta">No recommendations available.</div>
+        {% endif %}
+      </div>
+
+      <div class="k-card p-3">
+        <div class="fw-semibold mb-1">Detected level</div>
+        <div>
+          JD: {{ jd_level.predicted|default:"—"|title }}<br/>
+          CV: {{ cv_level.predicted|default:"—"|title }}
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+{% endblock %}

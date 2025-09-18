@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:14
+    container_name: cvchecker-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: cv_checker
+      POSTGRES_USER: cv_user
+      POSTGRES_PASSWORD: cv_pass
+    ports:
+      - "5433:5432"   # host:container (todo uses 5432 already)
+    volumes:
+      - cvchecker_pgdata:/var/lib/postgresql/data
+
+volumes:
+  cvchecker_pgdata:

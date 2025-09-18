@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="d-flex align-items-center justify-content-between mb-4">
+    <h2 class="mb-0">📊 My Analyses</h2>
+    <span class="text-muted small">{{ analyses|length }} total</span>
+  </div>
+
+  {% if analyses %}
+    <div class="row g-4">
+      {% for a in analyses %}
+
+        <div class="col-12 col-lg-6">
+          <div class="card h-100" id="card-{{ a.pk }}">
+            <div class="card-body">
+
+
+              <div class="d-flex align-items-start justify-content-between">
+                <div>
+                  <h5 class="mb-1">
+                    {% if a.job_title or a.company %}
+                      {% if a.job_title %}{{ a.job_title }}{% else %}<span class="text-muted">Untitled</span>{% endif %}
+                      {% if a.company %}<span class="text-muted"> @ {{ a.company }}</span>{% endif %}
+                    {% else %}
+                      <span class="text-muted">Text input comparison</span>
+                    {% endif %}
+                  </h5>
+                  <div class="small text-muted" title="{{ a.created_at|date:'Y-m-d H:i' }}">
+                    Analyzed {{ a.created_at|timesince }} ago
+                  </div>
+                </div>
+
+                <div class="text-end">
+                  {% with p=a.match_percent|default:0 %}
+                    {% if p >= 70 %}
+                      <span class="badge rounded-pill bg-success">{{ p|floatformat:2 }}%</span>
+                    {% elif p >= 40 %}
+                      <span class="badge rounded-pill bg-warning text-dark">{{ p|floatformat:2 }}%</span>
+                    {% else %}
+                      <span class="badge rounded-pill bg-danger">{{ p|floatformat:2 }}%</span>
+                    {% endif %}
+                  {% endwith %}
+                </div>
+              </div>
+
+
+              {% with p=a.match_percent|default:0 %}
+                <div class="progress mt-2" style="height:4px;">
+                  {% if p >= 70 %}
+                    <div class="progress-bar bg-success" role="progressbar" style="width: {{ p }}%;" aria-valuenow="{{ p }}" aria-valuemin="0" aria-valuemax="100"></div>
+                  {% elif p >= 40 %}
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: {{ p }}%;" aria-valuenow="{{ p }}" aria-valuemin="0" aria-valuemax="100"></div>
+                  {% else %}
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{ p }}%;" aria-valuenow="{{ p }}" aria-valuemin="0" aria-valuemax="100"></div>
+                  {% endif %}
+                </div>
+              {% endwith %}
+
+
+              <div class="d-flex flex-wrap gap-2 mt-3">
+                <span class="badge bg-light text-dark border">
+                  📄 CV:
+                  {% if a.cv_file %}
+                    {{ a.cv_file.name|slice:"11:" }}
+                  {% else %}
+                    Text input
+                  {% endif %}
+                </span>
+
+                <span class="badge bg-light text-dark border">
+                  📝 JD:
+                  {% if a.jd_file %}
+                    {{ a.jd_file.name|slice:"11:" }}
+                  {% else %}
+                    Text input
+                  {% endif %}
+                </span>
+              </div>
+
+
+              <div class="d-flex gap-2 flex-wrap mt-3">
+                <a href="{% url 'analysis_detail' a.pk %}" class="btn btn-primary btn-sm">
+                  🔍 View Results
+                </a>
+
+                {% if a.cv_file %}
+                  <a href="{{ a.cv_file.url }}" class="btn btn-outline-secondary btn-sm" download>
+                    📄 Download CV
+                  </a>
+                {% endif %}
+
+                {% if a.jd_file %}
+                  <a href="{{ a.jd_file.url }}" class="btn btn-outline-secondary btn-sm" download>
+                    📝 Download JD
+                  </a>
+                {% endif %}
+
+
+                <form
+                  method="POST"
+                  action="{% url 'analysis_delete' a.pk %}"
+                  data-hx-post="{% url 'analysis_delete' a.pk %}"
+                  data-hx-target="#card-{{ a.pk }}"
+                  data-hx-swap="outerHTML"
+                  data-hx-confirm="Are you sure you want to delete this analysis?"
+                  style="display:inline;"
+                >
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-outline-danger btn-sm">
+                    🗑️ Delete
+                  </button>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="alert alert-info">
+      You have not uploaded any analyses yet.
+    </div>
+  {% endif %}
+{% endblock %}

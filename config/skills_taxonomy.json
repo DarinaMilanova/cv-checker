@@ -1,0 +1,470 @@
+{
+  "Programming_Languages": {
+    "label": "Programming Languages",
+    "skills": [
+      "python", "java", "javascript", "typescript",
+      "c", "c++", "c#", "go", "php", "ruby",
+      "swift", "kotlin", "rust", "scala",
+      "bash", "powershell", "shell", "matlab", "r"
+    ],
+    "aliases": {
+      "py": "python",
+      "cpython": "python",
+      "jvm": "java",
+      "js": "javascript",
+      "nodejs language": "javascript",
+      "ts": "typescript",
+      "golang": "go",
+      "c sharp": "c#",
+      "cplusplus": "c++",
+      "objective c": "c",
+      "ps": "powershell",
+      "pwsh": "powershell",
+      "sh": "shell"
+    }
+  },
+
+  "Frameworks_Libraries": {
+    "label": "Frameworks & Libraries",
+    "skills": [
+      "spring boot", "spring", "hibernate",
+      "django", "flask", "fastapi",
+      "node.js", "express", "nestjs",
+      "react", "react native", "next.js",
+      "angular", "vue", "nuxt",
+      "svelte", "sveltekit",
+      "tailwindcss", "bootstrap",
+      "asp.net core", "entity framework",
+      "laravel", "symfony",
+      "rails",
+      "jetpack compose",
+      "redux", "vuex"
+    ],
+    "aliases": {
+      "springboot": "spring boot",
+      "spring mvc": "spring",
+      "ef core": "entity framework",
+      "asp.net": "asp.net core",
+      "reactjs": "react",
+      "react-native": "react native",
+      "rn": "react native",
+      "nextjs": "next.js",
+      "nuxtjs": "nuxt",
+      "vuejs": "vue",
+      "angularjs": "angular",
+      "node": "node.js",
+      "expressjs": "express",
+      "tailwind": "tailwindcss",
+      "jetpackcompose": "jetpack compose",
+      "redux toolkit": "redux",
+      "ngrx": "angular",
+      "mobx": "react"
+    }
+  },
+
+  "Web_Technologies": {
+    "label": "Web Technologies",
+    "skills": [
+      "html", "css", "sass", "less",
+      "webpack", "vite", "babel",
+      "web components", "pwa", "seo"
+    ],
+    "aliases": {
+      "html5": "html",
+      "css3": "css"
+    }
+  },
+
+  "API_Technologies": {
+    "label": "API Technologies",
+    "skills": [
+      "rest", "graphql", "grpc", "websocket",
+      "openapi", "swagger", "postman", "api"
+    ],
+    "aliases": {
+      "restful": "rest",
+      "websockets": "websocket",
+      "open api": "openapi",
+      "swagger ui": "swagger",
+      "graphql api": "graphql",
+      "graphql apis": "graphql",
+      "API design": "api",
+      "apis": "api",
+      "api's": "api"
+    }
+  },
+
+  "Databases_Relational": {
+    "label": "Databases (Relational)",
+    "skills": [
+      "mysql", "mariadb", "postgresql", "sql server", "oracle",
+      "sqlite", "aurora mysql", "aurora postgresql"
+    ],
+    "aliases": {
+      "postgres": "postgresql",
+      "mssql": "sql server",
+      "psql": "postgresql",
+      "oracle db": "oracle",
+      "galera": "mysql",
+      "aurora": "aurora mysql"
+    }
+  },
+
+  "Databases_NonRelational": {
+    "label": "Databases (NoSQL)",
+    "skills": [
+      "mongodb", "cassandra", "dynamodb", "couchbase",
+      "redis", "scylladb", "neo4j", "elasticsearch"
+    ],
+    "aliases": {
+      "mongo": "mongodb",
+      "es": "elasticsearch",
+      "redis cluster": "redis",
+      "scylla": "scylladb"
+    }
+  },
+
+  "Databases_TimeSeries": {
+    "label": "Databases (Time Series)",
+    "skills": [
+      "timescaledb", "influxdb", "prometheus tsdb", "opentsdb", "clickhouse"
+    ],
+    "aliases": {
+      "timescale": "timescaledb",
+      "prometheus": "prometheus tsdb",
+      "tsdb": "prometheus tsdb"
+    }
+  },
+
+  "Data_Engineering": {
+    "label": "Data Engineering",
+    "skills": [
+      "airflow", "dbt", "spark", "hadoop",
+      "kafka connect", "kinesis data firehose",
+      "etl", "elt", "glue"
+    ],
+    "aliases": {
+      "apache airflow": "airflow",
+      "apache spark": "spark",
+      "aws glue": "glue",
+      "data pipeline": "etl"
+    }
+  },
+
+  "Data_Science_ML": {
+    "label": "Data Science & ML",
+    "skills": [
+      "pandas", "numpy", "scipy",
+      "scikit-learn", "tensorflow", "pytorch",
+      "xgboost", "lightgbm",
+      "mlflow", "jupyter", "matplotlib", "seaborn",
+      "artificial intelligence"
+    ],
+    "aliases": {
+      "sklearn": "scikit-learn",
+      "tf": "tensorflow",
+      "torch": "pytorch",
+      "notebook": "jupyter",
+      "ai": "artificial intelligence",
+      "artificial intelligence": "artificial intelligence"
+    }
+  },
+
+  "Messaging_Eventing": {
+    "label": "Messaging & Eventing",
+    "skills": [
+      "kafka", "rabbitmq", "activemq", "pulsar",
+      "aws sqs", "aws sns", "google pub/sub",
+      "redis streams", "kinesis"
+    ],
+    "aliases": {
+      "apache kafka": "kafka",
+      "pubsub": "google pub/sub",
+      "sqs": "aws sqs",
+      "sns": "aws sns"
+    }
+  },
+
+  "Cloud_Platforms": {
+    "label": "Cloud Platforms",
+    "skills": [
+      "aws", "azure", "gcp",
+      "ec2", "s3", "rds", "lambda", "eks", "ecr", "cloudwatch",
+      "azure vm", "blob storage", "azure sql", "aks", "functions", "event hub",
+      "gke", "compute engine", "cloud storage", "cloud sql", "cloud run", "stackdriver"
+    ],
+    "aliases": {
+      "amazon web services": "aws",
+      "google cloud": "gcp",
+      "azure devops pipelines": "azure",
+      "cloud watch": "cloudwatch",
+      "event hubs": "event hub",
+      "container registry": "ecr",
+      "google kubernetes engine": "gke",
+      "aws cloud": "aws",
+      "amazon aws": "aws"
+    }
+  },
+
+  "Containerization_Orchestration": {
+    "label": "Containerization & Orchestration",
+    "skills": [
+      "docker", "kubernetes", "helm", "compose",
+      "openshift", "podman"
+    ],
+    "aliases": {
+      "k8s": "kubernetes",
+      "docker compose": "compose",
+      "okd": "openshift"
+    }
+  },
+
+  "Infrastructure_as_Code": {
+    "label": "Infrastructure as Code",
+    "skills": [
+      "terraform", "ansible", "pulumi", "cloudformation",
+      "packer", "kustomize"
+    ],
+    "aliases": {
+      "aws cloudformation": "cloudformation",
+      "hashicorp packer": "packer"
+    }
+  },
+
+  "CI_CD_Tooling": {
+    "label": "CI/CD Tooling",
+    "skills": [
+      "jenkins", "github actions", "gitlab ci", "circleci",
+      "argo cd", "flux", "teamcity", "travis ci", "bamboo","azure devops pipelines",
+      "ci cd pipelines"
+    ],
+    "aliases": {
+      "actions": "github actions",
+      "gitlab pipelines": "gitlab ci",
+      "argocd": "argo cd",
+      "ci pipeline": "ci cd pipelines",
+      "ci pipelines": "ci cd pipelines",
+      "cd pipeline": "ci cd pipelines",
+      "cd pipelines": "ci cd pipelines",
+      "ci/cd": "ci cd pipelines",
+      "ci/cd pipeline": "ci cd pipelines",
+      "ci/cd pipelines": "ci cd pipelines",
+      "azure pipelines": "azure devops pipelines",
+      "azure devops": "azure devops pipelines",
+      "jenkins ci": "jenkins",
+      "jenkins pipelines": "jenkins"
+    }
+  },
+
+  "Version_Control": {
+    "label": "Version Control",
+    "skills": ["git", "github", "gitlab", "bitbucket", "svn"],
+    "aliases": {
+      "gh": "github",
+      "bb": "bitbucket"
+    }
+  },
+
+  "Observability_Tooling": {
+    "label": "Observability Tooling",
+    "skills": [
+      "prometheus", "grafana", "elk", "elasticsearch", "logstash", "kibana",
+      "opentelemetry", "datadog", "new relic", "splunk", "sentry", "jaeger", "tempo", "loki"
+    ],
+    "aliases": {
+      "elastic": "elasticsearch",
+      "elastic stack": "elk",
+      "otel": "opentelemetry",
+      "nr": "new relic"
+    }
+  },
+
+  "Security": {
+    "label": "Security",
+    "skills": [
+      "oauth2", "oidc", "jwt", "sso", "rbac",
+      "tls", "mtls", "certificates", "ssl pinning",
+      "keycloak", "vault",
+      "siem", "ids", "ips",
+      "owasp", "cors", "csp",
+      "sast", "dast", "secrets scanning"
+    ],
+    "aliases": {
+      "openid connect": "oidc",
+      "json web token": "jwt",
+      "single sign-on": "sso",
+      "mutual tls": "mtls",
+      "hashicorp vault": "vault",
+      "owasp top 10": "owasp"
+    }
+  },
+
+  "QA_Testing": {
+    "label": "QA & Testing",
+    "skills": [
+      "selenium", "cypress", "playwright", "appium",
+      "junit", "testng", "pytest", "mocha", "jest",
+      "cucumber", "bdd", "tdd",
+      "postman", "newman",
+      "jmeter", "gatling", "k6"
+    ],
+    "aliases": {
+      "gherkin": "cucumber",
+      "unit testing": "junit",
+      "integration testing": "junit",
+      "automation testing": "selenium"
+    }
+  },
+
+  "Mobile_iOS": {
+    "label": "Mobile (iOS)",
+    "skills": [
+      "swift", "objective-c", "swiftui", "combine",
+      "uikit", "cocoapods", "carthage", "xcode",
+      "fastlane", "contentful", "mvvm", "coordinator pattern"
+    ],
+    "aliases": {
+      "obj-c": "objective-c",
+      "swift ui": "swiftui",
+      "rxswift": "combine",
+      "xc": "xcode"
+    }
+  },
+
+  "Mobile_Android": {
+    "label": "Mobile (Android)",
+    "skills": [
+      "kotlin", "java", "android sdk",
+      "jetpack compose", "coroutines", "flows",
+      "dagger", "hilt", "gradle", "play console"
+    ],
+    "aliases": {
+      "compose": "jetpack compose",
+      "android jetpack": "jetpack",
+      "google play": "play console",
+      "Jetpack compose": "jetpack compose",
+      "jetpack": "jetpack compose"
+    }
+  },
+
+  "Mobile_CrossPlatform": {
+    "label": "Mobile (Cross-platform)",
+    "skills": [
+      "react native", "flutter", "dart", "expo"
+    ],
+    "aliases": {
+      "rn": "react native",
+      "expo go": "expo"
+    }
+  },
+
+  "UI_UX": {
+    "label": "UI / UX",
+    "skills": [
+      "figma", "sketch", "adobe xd", "zeplin",
+      "wireframing", "prototyping", "user research",
+      "usability testing", "design systems", "wcag", "a11y"
+    ],
+    "aliases": {
+      "accessibility": "a11y",
+      "wcag 2.1": "wcag",
+      "material design": "design systems"
+    }
+  },
+
+  "IT_Support": {
+    "label": "IT Support",
+    "skills": [
+      "itil", "servicenow", "jira", "confluence",
+      "ticketing", "sla", "remote desktop",
+      "troubleshooting", "knowledge base"
+    ],
+    "aliases": {
+      "sn": "servicenow",
+      "kb": "knowledge base",
+      "atlassian jira": "jira",
+      "jira software": "jira"
+    }
+  },
+
+  "SysAdmin_Linux": {
+    "label": "SysAdmin (Linux)",
+    "skills": [
+      "linux", "bash", "systemd", "nginx", "apache",
+      "selinux", "lvm", "ssh", "sftp", "cron"
+    ],
+    "aliases": {
+      "rhel": "linux",
+      "centos": "linux",
+      "debian": "linux",
+      "ubuntu": "linux",
+      "httpd": "apache"
+    }
+  },
+
+  "SysAdmin_Windows": {
+    "label": "SysAdmin (Windows)",
+    "skills": [
+      "windows server", "active directory", "group policy",
+      "powershell", "iis", "hyper-v", "microsoft sql server", "wsus"
+    ],
+    "aliases": {
+      "ad": "active directory",
+      "gpo": "group policy",
+      "mssql": "microsoft sql server"
+    }
+  },
+
+  "Networking": {
+    "label": "Networking",
+    "skills": [
+      "tcp/ip", "udp", "dns", "dhcp", "http", "tls",
+      "vpn", "lan", "wan", "bgp", "ospf",
+      "firewall", "nat", "load balancer", "nginx", "haproxy", "envoy"
+    ],
+    "aliases": {
+      "lb": "load balancer",
+      "l7 proxy": "envoy"
+    }
+  },
+
+  "Customer_Support_Tools": {
+    "label": "Customer Support Tools",
+    "skills": [
+      "zendesk", "intercom", "freshdesk", "salesforce service cloud",
+      "livechat", "twilio", "five9", "genesys",
+      "csat", "nps"
+    ],
+    "aliases": {
+      "net promoter score": "nps",
+      "customer satisfaction": "csat"
+    }
+  },
+
+  "Project_Methodologies": {
+    "label": "Project Methodologies",
+    "skills": [
+      "agile", "scrum", "kanban", "xp",
+      "OKRs", "roadmapping", "backlog grooming",
+      "code review", "pair programming"
+    ],
+    "aliases": {
+      "standups": "scrum",
+      "sprint planning": "scrum",
+      "retrospective": "scrum"
+    }
+  },
+
+  "Leadership_SoftSkills": {
+    "label": "Leadership & Soft Skills",
+    "skills": [
+      "lead", "mentor"
+    ],
+    "aliases": {
+      "led": "lead",
+      "leading": "lead",
+      "mentoring": "mentor",
+      "mentored": "mentor"
+    }
+  }
+}

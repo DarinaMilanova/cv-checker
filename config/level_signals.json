@@ -1,0 +1,63 @@
+{
+  "Entry": {
+    "phrases": [
+      "junior", "jr", "graduate", "entry level", "trainee", "intern",
+      "assistant", "apprentice", "fresh graduate", "starter"
+    ],
+    "regex": [
+      "\\b(0|0[-–]1|up to 1)\\+?\\s*years?\\b",
+      "\\b1\\s*(year|yr)\\s*(of\\s*)?experience\\b",
+      "\\b(no|little|limited)\\s+experience\\b"
+    ]
+  },
+
+  "Mid": {
+    "phrases": [
+      "mid", "mid-level", "intermediate", "regular", "professional",
+      "independent contributor"
+    ],
+    "regex": [
+      "\\b(2|3|2[-–]3|3[-–]4)\\+?\\s*years?\\b",
+      "\\b2\\s*to\\s*4\\s*years?\\b"
+    ]
+  },
+
+  "Senior": {
+    "phrases": [
+      "senior", "sr", "lead", "staff", "tech lead", "team lead",
+      "mentor", "mentoring", "ownership", "own end-to-end",
+      "drive initiatives", "architectural decisions", "design reviews"
+    ],
+    "regex": [
+      "\\b(4|5|6|4[-–]6|5[-–]7)\\+?\\s*years?\\b",
+      "\\b5\\s*\\+?\\s*years?\\b",
+      "\\b4\\s*to\\s*7\\s*years?\\b"
+    ]
+  },
+
+  "Expert": {
+    "phrases": [
+      "principal", "architect", "distinguished", "chief engineer",
+      "hands-on architect", "set technical vision", "define roadmap",
+      "scale organization", "executive stakeholder", "cross-org leadership"
+    ],
+    "regex": [
+      "\\b(8|9|10|10\\+|8[-–]10|10[-–]15|15\\+)\\s*years?\\b",
+      "\\b(decade|10\\s*plus)\\s*years?\\b"
+    ]
+  },
+
+  "Demoters": {
+    "phrases": [
+      "learning", "basic knowledge", "exposed to", "assist with"
+    ]
+  },
+
+  "Boosters": {
+    "phrases": [
+      "own architecture", "own roadmap", "greenfield", "scale systems",
+      "mission critical", "high availability", "mentor others",
+      "interviewing", "hiring", "performance optimization"
+    ]
+  }
+}
