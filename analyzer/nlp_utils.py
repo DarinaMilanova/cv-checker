@@ -1,4 +1,3 @@
-# analyzer/nlp_utils.py
 import re
 import json
 import unicodedata
@@ -36,7 +35,6 @@ for cat_name, entry_map in (_raw_taxonomy or {}).items():
 
     skills_list = (entry_map or {}).get("skills", []) or []
     aliases_map = (entry_map or {}).get("aliases", {}) or {}
-
 
     for canon_name in skills_list:
         canon_norm = normalize_word(canon_name)
@@ -230,7 +228,7 @@ def analyze_texts(cv_text: str, jd_text: str):
         "extra_keywords": extra_keywords,
         "category_scores": category_scores,
         "match_percent": overall,
-        "overall": overall,  # alias
+        "overall": overall,
         "ai_result_text": get_result_text(overall),
         "jd_level": jd_level,
         "jd_level_signals": [],

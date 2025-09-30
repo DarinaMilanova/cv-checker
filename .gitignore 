@@ -1,0 +1,32 @@
+# Virtual environments
+.venv
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# IDE configs
+.idea/
+.vscode/
+
+# Django uploads
+media/
+
+# Django SQLite
+db.sqlite3
+db.sqlite3-journal
+
+# Mypy / Pytest cache
+.mypy_cache/
+.pytest_cache/
+
+# Cython debug
+cython_debug/

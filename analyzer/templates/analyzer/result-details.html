@@ -20,32 +20,36 @@
       </div>
     </div>
 
+
     <div class="d-flex align-items-center gap-2">
-      <div class="score-pill fs-5">{{ match_percent|default:"-" }}%</div>
+      <div class="score-pill fs-5">{{ match_percent|default:0|floatformat:2 }}%</div>
     </div>
   </div>
 </div>
 
 <div class="row g-4">
+
   <section class="col-12 col-lg-8">
     <ul class="nav tab-nav mb-3" role="tablist">
       <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="results-tab" data-bs-toggle="tab" data-bs-target="#resultsPane" type="button" role="tab">Results</button>
+        <button class="nav-link active" id="results-tab" data-bs-toggle="tab" data-bs-target="#resultsPane" type="button" role="tab" aria-controls="resultsPane" aria-selected="true">Results</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="bycat-tab" data-bs-toggle="tab" data-bs-target="#byCategoryPane" type="button" role="tab">Results by Category</button>
+        <button class="nav-link" id="bycat-tab" data-bs-toggle="tab" data-bs-target="#byCategoryPane" type="button" role="tab" aria-controls="byCategoryPane" aria-selected="false">Results by Category</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="cv-tab" data-bs-toggle="tab" data-bs-target="#cvPane" type="button" role="tab">CV Preview</button>
+        <button class="nav-link" id="cv-tab" data-bs-toggle="tab" data-bs-target="#cvPane" type="button" role="tab" aria-controls="cvPane" aria-selected="false">CV Preview</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="jd-tab" data-bs-toggle="tab" data-bs-target="#jdPane" type="button" role="tab">Job Ad Preview</button>
+        <button class="nav-link" id="jd-tab" data-bs-toggle="tab" data-bs-target="#jdPane" type="button" role="tab" aria-controls="jdPane" aria-selected="false">Job Ad Preview</button>
       </li>
     </ul>
 
     <div class="tab-content">
 
+
       <div class="tab-pane fade show active" id="resultsPane" role="tabpanel" aria-labelledby="results-tab">
+
 
         <div class="row g-3 mb-1">
           <div class="col-12 col-md-4">
@@ -67,6 +71,7 @@
             </div>
           </div>
         </div>
+
 
         <div class="row g-3 mt-1">
           <div class="col-12 col-md-4">
@@ -138,6 +143,7 @@
         <div class="preview-box">{{ analysis.cv_text|linebreaksbr }}</div>
       </div>
 
+
       <div class="tab-pane fade" id="jdPane" role="tabpanel" aria-labelledby="jd-tab">
         <div class="d-flex justify-content-between mb-2">
           <div class="mono k-meta truncate-1">{% if analysis.jd_file %}{{ analysis.jd_file.name|slice:"11:" }}{% else %}Job Ad (pasted text){% endif %}</div>
@@ -148,13 +154,16 @@
     </div>
   </section>
 
+
   <aside class="col-12 col-lg-4">
     <div class="insights-col">
+
 
       <div class="k-card p-3 mb-3">
         <div class="fw-semibold mb-1">Result</div>
         <div class="k-meta">{{ ai_result_text }}</div>
       </div>
+
 
       <div class="k-card p-3 mb-3">
         <div class="fw-semibold mb-2">Recommendations</div>
@@ -179,5 +188,32 @@
     </div>
   </aside>
 </div>
+
+
+<script>
+window.addEventListener('load', function () {
+  try {
+    const qs = new URLSearchParams(window.location.search);
+    const tab = (qs.get('tab') || '').toLowerCase();
+
+    const target =
+      tab === 'cv' ? '#cvPane' :
+      tab === 'jd' ? '#jdPane' :
+      tab === 'results' ? '#resultsPane' :
+      (tab === 'cats' || tab === 'categories') ? '#byCategoryPane' : null;
+
+    if (!target) return;
+
+    const trigger = document.querySelector(`[data-bs-target="${target}"]`);
+    const bs = window.bootstrap;
+
+    if (trigger && bs && bs.Tab) {
+      new bs.Tab(trigger).show();
+      document.querySelector('.tab-nav')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  } catch (_) {
+  }
+});
+</script>
 
 {% endblock %}

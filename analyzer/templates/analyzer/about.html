@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container about-page">
+
+  <header class="card border-0 shadow-sm mb-4">
+    <div class="card-body py-4">
+      <h1 class="display-6 fw-bold mb-2 text-center">About CV Checker</h1>
+      <p class="lead text-center mb-3">
+        Compare your CV to any job ad—instantly. Get a clean match score and category-based insights
+        so you can tailor your CV with confidence.
+      </p>
+      <div class="d-flex justify-content-center gap-2">
+        <a class="btn btn-primary" href="/">Try CV → JD Analysis</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+      <h2 class="h4 fw-semibold mb-2">What CV Checker does</h2>
+      <p class="mb-0">
+        CV Checker highlights what you already cover, what’s missing, and where to focus edits.
+        We normalise aliases (e.g., <em>T-SQL</em> → <strong>SQL</strong>) and group skills by category
+        (Programming, Frameworks, APIs, Databases, Cloud, CI/CD, etc.) to give you an objective, fast first pass.
+      </p>
+    </div>
+  </section>
+
+  <section class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+      <h2 class="h4 fw-semibold mb-3">How it works</h2>
+      <ol class="mb-0">
+        <li><strong>Upload</strong> your CV and the Job Description (or paste text).</li>
+        <li><strong>Extract &amp; clean</strong> terms; unify aliases and remove noise.</li>
+        <li><strong>Compare by category</strong> across core areas (e.g., APIs, Databases, CI/CD).</li>
+        <li><strong>Score &amp; insights</strong>: overall match %, missing skills, and extras.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+      <h2 class="h4 fw-semibold mb-3">Walkthrough</h2>
+
+      <div class="row g-4">
+        <!-- Upload page — BIG on top -->
+        <div class="col-12">
+          <figure class="mb-0">
+            <img src="{% static 'img/about-upload.png' %}?v=4" class="img-fluid rounded shadow-sm" alt="Upload page with CV and Job Ad inputs and Analyse button">
+            <figcaption class="small text-muted mt-2">
+              <strong>Upload</strong> — Add your CV &amp; JD, or paste text. Include Job Title and Company so they appear on your history cards.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <figure class="mb-0">
+            <img src="{% static 'img/about-results.png' %}?v=4" class="img-fluid rounded shadow-sm" alt="Results page with overall match percent and matched, missing, extra counts and detailed breakdown">
+            <figcaption class="small text-muted mt-2">
+              <strong>Results</strong> — Overall match %, quick counts (Matched / Missing / Extra), and detailed guidance by category.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="col-12 col-lg-6">
+          <figure class="mb-0">
+            <img src="{% static 'img/about-history.png' %}?v=4" class="img-fluid rounded shadow-sm" alt="Analysis History list showing cards with match rings, Job Title @ Company and quick actions">
+            <figcaption class="small text-muted mt-2">
+              <strong>Analysis History</strong> — Your saved analyses with <em>Job Title @ Company</em>, timestamp, quick actions, and the match ring.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+      <h2 class="h4 fw-semibold mb-3">What the score means?</h2>
+      <div class="row g-3">
+        <div class="col-12 col-md-4">
+          <div class="p-3 border rounded h-100">
+            <div class="fw-semibold mb-1">70–100%</div>
+            <div>Strong alignment. Tailor wording &amp; add proofs (projects, metrics).</div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="p-3 border rounded h-100">
+            <div class="fw-semibold mb-1">40–69%</div>
+            <div>Mixed fit. Fix the top three missing categories first.</div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="p-3 border rounded h-100">
+            <div class="fw-semibold mb-1">0–39%</div>
+            <div>Low fit. Consider a different role or rewrite using JD language.</div>
+          </div>
+        </div>
+      </div>
+      <p class="small text-muted mt-3 mb-0">
+        Score = unique JD skills you cover ÷ unique JD skills (after alias normalisation). If you add a JD skill that your CV already has, the ratio can remain unchanged—counts rise, percentage may not.
+      </p>
+    </div>
+  </section>
+
+  <section class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+      <h2 class="h4 fw-semibold mb-3">Categories we track</h2>
+      <div class="row g-2">
+        <div class="col-12 col-lg-6">
+          <ul class="mb-0">
+            <li>Programming Languages</li>
+            <li>Frameworks &amp; Libraries</li>
+            <li>Web &amp; API Technologies</li>
+            <li>Databases (Relational &amp; NoSQL)</li>
+            <li>Cloud Platforms</li>
+            <li>Containerisation &amp; Orchestration</li>
+          </ul>
+        </div>
+        <div class="col-12 col-lg-6">
+          <ul class="mb-0">
+            <li>CI/CD Tooling</li>
+            <li>Observability &amp; Security</li>
+            <li>QA &amp; Testing</li>
+            <li>Mobile (iOS/Android/Cross)</li>
+            <li>UI/UX</li>
+            <li>SysAdmin, Networking, Project Methods, Leadership</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small text-muted mt-3 mb-0">
+        Synonyms/aliases are unified (e.g., ReactJS → React, T-SQL / PL/SQL → SQL) so matches are fair and de-duplicated.
+      </p>
+    </div>
+  </section>
+
+
+  <section class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+      <h2 class="h4 fw-semibold mb-2">Privacy &amp; security</h2>
+      <ul class="mb-0">
+        <li>Your uploads are processed for comparison only.</li>
+        <li>You can delete any analysis at any time from <em>Analysis History</em>.</li>
+        <li>We do not share your files. (Adjust text here if your deployment stores files offsite.)</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <section class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+      <h2 class="h4 fw-semibold mb-3">FAQ</h2>
+      <div class="mb-3">
+        <div class="fw-semibold">Does this replace a human review?</div>
+        <div>No—it’s an objective first pass to guide edits quickly.</div>
+      </div>
+      <div class="mb-3">
+        <div class="fw-semibold">Which files are supported?</div>
+        <div>Text, PDF, DOCX work best. Plain text is the safest.</div>
+      </div>
+      <div class="mb-0">
+        <div class="fw-semibold">Can I remove my data?</div>
+        <div>Yes—use the delete button on any analysis card.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="card border-0 shadow-sm mb-5">
+    <div class="card-body">
+      <h2 class="h5 fw-semibold mb-2">Contact</h2>
+      <p class="mb-0">Questions or feedback? <a href="mailto:support@example.com">support@example.com</a></p>
+    </div>
+  </section>
+
+</div>
+{% endblock %}

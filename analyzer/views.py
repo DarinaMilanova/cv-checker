@@ -7,6 +7,7 @@ from .utils import extract_text_any
 from .models import Analysis
 from .nlp_utils import analyze_texts
 
+
 _CATEGORY_LABELS = {
     "programming_languages": "Programming Languages",
     "frameworks_libraries": "Frameworks & Libraries",
@@ -39,17 +40,13 @@ _CATEGORY_LABELS = {
 }
 
 def pretty_category(cat_key: str) -> str:
-    """
-    Convert a normalized taxonomy key (e.g., 'cloud_platforms') to a pretty
-    display label. Falls back gracefully for unknown categories.
-    """
     if not cat_key:
         return ""
     key = (cat_key or "").strip().lower()
     if key in _CATEGORY_LABELS:
         return _CATEGORY_LABELS[key]
 
-    # Fallback: replace underscores, title-case, then fix common acronyms.
+
     pretty = key.replace("_", " ").title()
     pretty = (
         pretty.replace("Api", "APIs")
@@ -57,7 +54,6 @@ def pretty_category(cat_key: str) -> str:
              .replace("Ci Cd", "CI/CD")
              .replace("Ios", "iOS")
     )
-    # Optional stylistic tweaks for families
     if pretty.startswith("Mobile Ios"):
         pretty = pretty.replace("Mobile Ios", "Mobile · iOS")
     if pretty.startswith("Mobile Android"):
@@ -79,7 +75,6 @@ def home(request):
             cv_text = form.cleaned_data.get("cv_text")
             jd_text = form.cleaned_data.get("jd_text")
 
-
             job_title = form.cleaned_data.get("job_title") or ""
             company = form.cleaned_data.get("company") or ""
 
@@ -89,7 +84,6 @@ def home(request):
             if not jd_text and jd_file:
                 jd_text = extract_text_any(jd_file)
 
-
             if cv_file:
                 cv_file.seek(0)
             if jd_file:
@@ -97,7 +91,6 @@ def home(request):
 
 
             results = analyze_texts(cv_text, jd_text)
-
 
             analysis = Analysis.objects.create(
                 user=request.user,
@@ -114,15 +107,14 @@ def home(request):
 
             return redirect("analysis_detail", pk=analysis.pk)
         else:
-            return render(request, "analyzer/upload.html", {"form": form})
+            return render(request, "analyzer/analyse.html", {"form": form})
 
-    return render(request, "analyzer/upload.html", {"form": AnalyzeUploadForm()})
-
+    return render(request, "analyzer/analyse.html", {"form": AnalyzeUploadForm()})
 
 @login_required
-def profile(request):
+def analysis_history(request):
     analyses = Analysis.objects.filter(user=request.user).order_by("-created_at")
-    return render(request, "analyzer/profile.html", {"analyses": analyses})
+    return render(request, "analyzer/analysis-history.html", {"analyses": analyses})
 
 
 @login_required
@@ -137,7 +129,10 @@ def analysis_detail(request, pk):
     mibc = results.get("missing_by_category", {})
     xbc = results.get("extra_by_category", {})
 
-    for cat_key, score in cat_scores.items():
+
+    all_keys = set(cat_scores) | set(mbc) | set(mibc) | set(xbc)
+    for cat_key in sorted(all_keys):
+        score = cat_scores.get(cat_key, 0.0)
         table_rows.append({
             "cat_key": cat_key,
             "cat_pretty": pretty_category(cat_key),
@@ -158,9 +153,10 @@ def analysis_detail(request, pk):
         "missing_keywords": results.get("missing_keywords", []),
         "extra_keywords": results.get("extra_keywords", []),
         "table_rows": table_rows,
+
         "evidence": results.get("evidence", {}),
     }
-    return render(request, "analyzer/detail.html", context)
+    return render(request, "analyzer/result-details.html", context)
 
 
 @login_required
@@ -172,3 +168,6 @@ def delete_analysis(request, pk):
             return HttpResponse("")
         messages.success(request, "Analysis deleted successfully.")
     return redirect("profile")
+
+def about(request):
+    return render(request, "analyzer/about.html")

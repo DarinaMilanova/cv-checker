@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Analysis(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+
     job_title = models.CharField(max_length=255, blank=True, null=True)
     company = models.CharField(max_length=255, blank=True, null=True)
 
