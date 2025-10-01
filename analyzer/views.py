@@ -167,7 +167,7 @@ def delete_analysis(request, pk):
         if request.headers.get("HX-Request") == "true":
             return HttpResponse("")
         messages.success(request, "Analysis deleted successfully.")
-    return redirect("profile")
+    return redirect("analysis_history")
 
 def about(request):
     return render(request, "analyzer/about.html")
