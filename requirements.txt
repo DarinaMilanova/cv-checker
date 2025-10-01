@@ -7,7 +7,7 @@ en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_
 langdetect==1.0.9
 pdfminer.six==20250506
 psycopg-binary==3.2.9
-pycparser==2.22z
+pycparser==2.22
 six==1.17.0
 sqlparse==0.5.3
 striprtf==0.0.29
