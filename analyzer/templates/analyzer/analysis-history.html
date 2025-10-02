@@ -79,7 +79,7 @@
                           action="{% url 'analysis_delete' a.pk %}"
                           hx-post="{% url 'analysis_delete' a.pk %}"
                           hx-target="#row-{{ a.pk }}"
-                          hx-swap="outerHTML"
+                          hx-swap="delete"
                           hx-confirm="Are you sure you want to delete this analysis?"
                           class="d-inline">
                       {% csrf_token %}
