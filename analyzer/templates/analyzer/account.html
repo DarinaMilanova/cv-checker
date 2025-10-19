@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4" style="max-width:720px;">
+  <div class="card shadow p-4 rounded-3"
+       style="border:2px solid var(--frame-nav); box-shadow:0 0 0 3px var(--halo-nav); border-radius:16px;">
+    <h2 class="mb-3">Account</h2>
+
+    <div class="row gy-3">
+      <div class="col-12 col-md-6">
+        <div class="small text-muted">Username</div>
+        <div class="fw-semibold">{{ u.username }}</div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="small text-muted">Email</div>
+        <div class="fw-semibold">{{ u.email|default:"—" }}</div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="small text-muted">Joined</div>
+        <div class="fw-semibold">{{ u.date_joined|date:"d M Y, H:i" }}</div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="small text-muted">Last login</div>
+        <div class="fw-semibold">
+          {% if u.last_login %}{{ u.last_login|date:"d M Y, H:i" }}{% else %}—{% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end gap-3 mt-4">
+      <form method="get" action="{% url 'password_change' %}">
+        <button type="submit" class="btn btn-action btn-clear">
+          Change password
+        </button>
+      </form>
+
+      <form method="post" action="{% url 'delete_account' %}"
+            onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone.');">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-action btn-analyze">
+          Delete account
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -6,7 +6,9 @@ from .forms import AnalyzeUploadForm
 from .utils import extract_text_any
 from .models import Analysis
 from .nlp_utils import analyze_texts
-
+from django.contrib.auth import login, logout
+from .forms import CustomRegisterForm, CustomLoginForm
+from django.contrib.auth import get_user_model
 
 _CATEGORY_LABELS = {
     "programming_languages": "Programming Languages",
@@ -171,3 +173,53 @@ def delete_analysis(request, pk):
 
 def about(request):
     return render(request, "analyzer/about.html")
+
+def register_view(request):
+    if request.method == "POST":
+        form = CustomRegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Account created and logged in.")
+            return redirect("home")
+        else:
+            messages.error(request, "Please correct the errors below.")
+    else:
+        form = CustomRegisterForm()
+    return render(request, "analyzer/register.html", {"form": form})
+
+
+def login_view(request):
+    if request.method == "POST":
+        form = CustomLoginForm(request, data=request.POST)
+        if form.is_valid():
+            login(request, form.get_user())
+            messages.success(request, "Logged in successfully.")
+            return redirect("home")
+        else:
+            messages.error(request, "Invalid username or password.")
+    else:
+        form = CustomLoginForm()
+    return render(request, "analyzer/login.html", {"form": form})
+
+
+def logout_view(request):
+    logout(request)
+    messages.info(request, "Logged out.")
+    return redirect("login")
+
+
+@login_required
+def account_info(request):
+    return render(request, "analyzer/account.html", {"u": request.user})
+
+User = get_user_model()
+@login_required
+def delete_account(request):
+    if request.method == "POST":
+        user = request.user
+        logout(request)
+        user.delete()
+        messages.success(request, "Your account has been deleted.")
+        return redirect("login")
+    return redirect("account_info")

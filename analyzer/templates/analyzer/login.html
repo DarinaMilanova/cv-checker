@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="auth-page">
+  <div class="auth-card">
+    <h2 class="text-center mb-3">Login</h2>
+    <p class="text-center auth-muted mb-4">Welcome back — sign in to analyze a CV.</p>
+
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger py-2">{{ form.non_field_errors|striptags }}</div>
+    {% endif %}
+
+    <form method="post" novalidate>
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
+        {{ form.username }}
+        {% for e in form.username.errors %}
+          <div class="text-danger small">{{ e }}</div>
+        {% endfor %}
+      </div>
+
+      <div class="mb-3">
+        <label for="{{ form.password.id_for_label }}" class="form-label">Password</label>
+        <div class="pw-field">
+          {{ form.password }}
+          <button type="button"
+                  class="toggle-password"
+                  data-target="#{{ form.password.id_for_label }}"
+                  aria-pressed="false"
+                  aria-label="Show password">Show</button>
+        </div>
+        {% for e in form.password.errors %}
+          <div class="text-danger small">{{ e }}</div>
+        {% endfor %}
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary px-5 w-auto">Login</button>
+      </div>
+    </form>
+
+    <div class="auth-links text-center mt-3">
+      <a href="{% url 'password_reset' %}">Forgot password?</a>
+      <span class="mx-2">·</span>
+      <a href="{% url 'register' %}">Create an account</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.toggle-password').forEach(btn=>{
+    const id = btn.getAttribute('data-target')?.slice(1);
+    const input = id && document.getElementById(id);
+    if(!input) return;
+    btn.addEventListener('click',()=>{
+      const show = input.type === 'password';
+      input.type = show ? 'text' : 'password';
+      btn.textContent = show ? 'Hide' : 'Show';
+      btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+      btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    });
+  });
+})();
+</script>
+{% endblock %}
