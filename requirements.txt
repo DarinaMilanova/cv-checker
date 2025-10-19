@@ -6,7 +6,7 @@ docx2txt==0.9
 en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl#sha256=1932429db727d4bff3deed6b34cfc05df17794f4a52eeb26cf8928f7c1a0fb85
 langdetect==1.0.9
 pdfminer.six==20250506
-psycopg-binary==3.2.9
+psycopg2-binary==2.9.9
 pycparser==2.22
 six==1.17.0
 sqlparse==0.5.3
