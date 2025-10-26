@@ -114,7 +114,7 @@
     "label": "Databases (NoSQL)",
     "skills": [
       "mongodb", "cassandra", "dynamodb", "couchbase",
-      "redis", "scylladb", "neo4j", "elasticsearch"
+      "redis", "scylladb", "neo4j", "elasticsearch","NoSQL"
     ],
     "aliases": {
       "mongo": "mongodb",
